@@ -1,0 +1,91 @@
+{
+  "aliasColors": {},
+  "bars": false,
+  "datasource": "whisper",
+  "editable": true,
+  "error": false,
+  "fill": 10,
+  "grid": {
+    "leftLogBase": 1,
+    "leftMax": null,
+    "leftMin": null,
+    "rightLogBase": 1,
+    "rightMax": null,
+    "rightMin": null,
+    "threshold1": null,
+    "threshold1Color": "rgba(216, 200, 27, 0.27)",
+    "threshold2": null,
+    "threshold2Color": "rgba(234, 112, 112, 0.22)"
+  },
+  "id": 3,
+  "isNew": true,
+  "legend": {
+    "avg": false,
+    "current": false,
+    "max": false,
+    "min": false,
+    "show": true,
+    "total": false,
+    "values": false
+  },
+  "lines": true,
+  "linewidth": 1,
+  "links": [],
+  "nullPointMode": "connected",
+  "percentage": true,
+  "pointradius": 5,
+  "points": false,
+  "renderer": "flot",
+  "seriesOverrides": [],
+  "span": 4,
+  "stack": true,
+  "steppedLine": false,
+  "targets": [
+    {
+      "refId": "A",
+      "target": "aliasByMetric(servers." + srv + ".cpu.total.user)"
+    },
+    {
+      "refId": "B",
+      "target": "aliasByMetric(servers." + srv + ".cpu.total.idle)"
+    },
+    {
+      "refId": "C",
+      "target": "aliasByMetric(servers." + srv + ".cpu.total.iowait)"
+    },
+    {
+      "refId": "D",
+      "target": "aliasByMetric(servers." + srv + ".cpu.total.nice)"
+    },
+    {
+      "refId": "E",
+      "target": "aliasByMetric(servers." + srv + ".cpu.total.system)"
+    },
+    {
+      "refId": "F",
+      "target": "aliasByMetric(servers." + srv + ".cpu.total.softirq)"
+    },
+    {
+      "refId": "G",
+      "target": "aliasByMetric(servers." + srv + ".cpu.total.steal)"
+    },
+    {
+      "refId": "H",
+      "target": "aliasByMetric(servers." + srv + ".cpu.total.irq)"
+    }
+  ],
+  "timeFrom": null,
+  "timeShift": null,
+  "title": "CPU",
+  "tooltip": {
+    "shared": true,
+    "value_type": "cumulative"
+  },
+  "type": "graph",
+  "x-axis": true,
+  "y-axis": true,
+  "y_formats": [
+    "short",
+    "short"
+  ]
+}

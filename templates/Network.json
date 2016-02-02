@@ -1,0 +1,71 @@
+{
+  "aliasColors": {
+    "upload": "#E24D42"
+  },
+  "bars": false,
+  "datasource": "whisper",
+  "editable": true,
+  "error": false,
+  "fill": 3,
+  "grid": {
+    "leftLogBase": 1,
+    "leftMax": null,
+    "leftMin": null,
+    "rightLogBase": 1,
+    "rightMax": null,
+    "rightMin": null,
+    "threshold1": null,
+    "threshold1Color": "rgba(216, 200, 27, 0.27)",
+    "threshold2": null,
+    "threshold2Color": "rgba(234, 112, 112, 0.22)"
+  },
+  "id": 2,
+  "isNew": true,
+  "legend": {
+    "avg": false,
+    "current": false,
+    "max": false,
+    "min": false,
+    "show": true,
+    "total": false,
+    "values": false
+  },
+  "lines": true,
+  "linewidth": 2,
+  "links": [],
+  "nullPointMode": "connected",
+  "percentage": false,
+  "pointradius": 5,
+  "points": false,
+  "renderer": "flot",
+  "seriesOverrides": [],
+  "span": 4,
+  "stack": false,
+  "steppedLine": false,
+  "targets": [
+    {
+      "refId": "A",
+      "target": "aliasByNode(collectd." + srv + ".interface-" + iface +".if_octets.rx, 2,-1)",
+      "textEditor": false
+    },
+    {
+      "refId": "B",
+      "target": "aliasByNode(scale(collectd." + srv + ".interface-" + iface +".if_octets.tx, -1), 2, -1)",
+      "textEditor": false
+    },
+  ],
+  "timeFrom": null,
+  "timeShift": null,
+  "title": "Network",
+  "tooltip": {
+    "shared": true,
+    "value_type": "cumulative"
+  },
+  "type": "graph",
+  "x-axis": true,
+  "y-axis": true,
+  "y_formats": [
+    "bytes",
+    "short"
+  ]
+}

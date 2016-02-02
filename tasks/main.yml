@@ -1,0 +1,5 @@
+- name: put dashboard
+  template: dest=/usr/share/grafana/public/dashboards/{{ item }}
+            src={{ item }}
+  with_items:
+      - auto.js
