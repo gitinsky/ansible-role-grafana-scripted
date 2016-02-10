@@ -1,26 +1,28 @@
 {
   "aliasColors": {
-    "interface-agge.tx": "#890F02",
-    "upload": "#E24D42"
+    "load1": "#7EB26D",
+    "load15": "#E24D42",
+    "loadavg.05": "#F9934E"
   },
   "bars": false,
   "datasource": "whisper",
   "editable": true,
   "error": false,
-  "fill": 3,
+  "fill": 1,
   "grid": {
     "leftLogBase": 1,
-    "leftMax": 1073741824,
-    "leftMin": -1073741824,
+    "leftMax": null,
+    "leftMin": null,
     "rightLogBase": 1,
     "rightMax": null,
     "rightMin": null,
-    "threshold1": null,
-    "threshold1Color": "rgba(11, 9, 2, 0.05)",
+    "threshold1": 100,
+    "threshold1Color": "rgba(216, 200, 27, 0.27)",
     "threshold2": null,
-    "threshold2Color": "rgba(234, 112, 112, 0.22)"
+    "threshold2Color": "rgba(234, 112, 112, 0.22)",
+    "thresholdLine": false
   },
-  "id": 11,
+  "id": 7,
   "isNew": true,
   "legend": {
     "avg": false,
@@ -46,18 +48,21 @@
   "targets": [
     {
       "refId": "A",
-      "target": "aliasByNode(scale(collectd.$server.interface-$iface.if_octets.rx, 8), 2, -1)",
+      "target": "aliasByNode(telegraf.$server.system.load1, 3)",
       "textEditor": false
     },
     {
       "refId": "B",
-      "target": "aliasByNode(scale(collectd.$server.interface-$iface.if_octets.tx, -8), 2, -1)",
-      "textEditor": false
+      "target": "aliasByNode(telegraf.$server.system.load5, 3)"
+    },
+    {
+      "refId": "C",
+      "target": "aliasByNode(telegraf.$server.system.load15, 3)"
     }
   ],
   "timeFrom": null,
   "timeShift": null,
-  "title": "Network $iface",
+  "title": "LA",
   "tooltip": {
     "shared": true,
     "value_type": "cumulative"
@@ -66,7 +71,7 @@
   "x-axis": true,
   "y-axis": true,
   "y_formats": [
-    "bits",
+    "short",
     "short"
   ]
 }

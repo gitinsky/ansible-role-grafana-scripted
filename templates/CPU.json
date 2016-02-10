@@ -1,5 +1,8 @@
 {
-  "aliasColors": {},
+  "aliasColors": {
+    "idle": "#7EB26D",
+    "user": "#0A50A1"
+  },
   "bars": false,
   "datasource": "whisper",
   "editable": true,
@@ -17,7 +20,7 @@
     "threshold2": null,
     "threshold2Color": "rgba(234, 112, 112, 0.22)"
   },
-  "id": 3,
+  "id": 12,
   "isNew": true,
   "legend": {
     "avg": false,
@@ -42,36 +45,38 @@
   "steppedLine": false,
   "targets": [
     {
-      "refId": "A",
-      "target": "aliasByMetric(servers." + srv + ".cpu.total.user)"
-    },
-    {
       "refId": "B",
-      "target": "aliasByMetric(servers." + srv + ".cpu.total.idle)"
+      "target": "aliasByMetric(servers.$server.cpu.total.user)",
+      "textEditor": false
     },
     {
       "refId": "C",
-      "target": "aliasByMetric(servers." + srv + ".cpu.total.iowait)"
+      "target": "aliasByMetric(servers.$server.cpu.total.iowait)"
     },
     {
       "refId": "D",
-      "target": "aliasByMetric(servers." + srv + ".cpu.total.nice)"
+      "target": "aliasByMetric(servers.$server.cpu.total.nice)"
     },
     {
       "refId": "E",
-      "target": "aliasByMetric(servers." + srv + ".cpu.total.system)"
+      "target": "aliasByMetric(servers.$server.cpu.total.system)"
     },
     {
       "refId": "F",
-      "target": "aliasByMetric(servers." + srv + ".cpu.total.softirq)"
+      "target": "aliasByMetric(servers.$server.cpu.total.softirq)"
     },
     {
       "refId": "G",
-      "target": "aliasByMetric(servers." + srv + ".cpu.total.steal)"
+      "target": "aliasByMetric(servers.$server.cpu.total.steal)"
     },
     {
       "refId": "H",
-      "target": "aliasByMetric(servers." + srv + ".cpu.total.irq)"
+      "target": "aliasByMetric(servers.$server.cpu.total.irq)"
+    },
+    {
+      "refId": "I",
+      "target": "aliasByMetric(servers.$server.cpu.total.idle)",
+      "textEditor": false
     }
   ],
   "timeFrom": null,

@@ -1,27 +1,25 @@
 {
-  "aliasColors": {
-    "interface-agge.tx": "#890F02",
-    "upload": "#E24D42"
-  },
+  "aliasColors": {},
   "bars": false,
   "datasource": "whisper",
   "editable": true,
   "error": false,
-  "fill": 3,
+  "fill": 1,
   "grid": {
     "leftLogBase": 1,
-    "leftMax": 1073741824,
-    "leftMin": -1073741824,
+    "leftMax": 110,
+    "leftMin": 0,
     "rightLogBase": 1,
     "rightMax": null,
     "rightMin": null,
     "threshold1": null,
-    "threshold1Color": "rgba(11, 9, 2, 0.05)",
+    "threshold1Color": "rgba(216, 200, 27, 0.27)",
     "threshold2": null,
     "threshold2Color": "rgba(234, 112, 112, 0.22)"
   },
-  "id": 11,
+  "id": 3,
   "isNew": true,
+  "leftYAxisLabel": "",
   "legend": {
     "avg": false,
     "current": false,
@@ -46,18 +44,20 @@
   "targets": [
     {
       "refId": "A",
-      "target": "aliasByNode(scale(collectd.$server.interface-$iface.if_octets.rx, 8), 2, -1)",
-      "textEditor": false
+      "target": "aliasByNode(telegraf.$server.aerospike.free_pct_disk, 3)"
     },
     {
       "refId": "B",
-      "target": "aliasByNode(scale(collectd.$server.interface-$iface.if_octets.tx, -8), 2, -1)",
-      "textEditor": false
+      "target": "aliasByNode(telegraf.$server.aerospike.free_pct_memory, 3)"
+    },
+    {
+      "refId": "C",
+      "target": "aliasByNode(telegraf.$server.aerospike.available_pct, 3)"
     }
   ],
   "timeFrom": null,
   "timeShift": null,
-  "title": "Network $iface",
+  "title": "Aerospike Disk & RAM",
   "tooltip": {
     "shared": true,
     "value_type": "cumulative"
@@ -66,7 +66,7 @@
   "x-axis": true,
   "y-axis": true,
   "y_formats": [
-    "bits",
+    "percent",
     "short"
   ]
 }

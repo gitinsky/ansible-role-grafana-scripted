@@ -1,6 +1,6 @@
 // https://github.com/grafana/grafana/blob/develop/public/dashboards/scripted.js
-// servers_raw = $.getJSON('https://188.42.132.220/api/datasources/proxy/1/metrics/find/?query=telegraf.*')
-// $.getJSON('https://188.42.132.220/api/datasources/proxy/1/metrics/find/?query=telegraf.*', function(result)) {
+// servers_raw = $.getJSON('https://ip/api/datasources/proxy/1/metrics/find/?query=telegraf.*')
+// $.getJSON('https://ip/api/datasources/proxy/1/metrics/find/?query=telegraf.*', function(result)) {
 //
 // }
 
@@ -13,7 +13,7 @@ var window, document, ARGS, $, jQuery, moment, kbn;
 var ARGS;
 
 // Setup some variables
-var dashboard, row, panels, panel, cols, graph, templates, iface;
+var dashboard, row, panels, panel, cols, graph, templates, iface, dsname, s;
 templates = {};
 
 cols = 3;
@@ -30,16 +30,31 @@ if(!_.isUndefined(ARGS.graph)) {
   graph = ARGS.graph;
 }
 
+dsname = null;
+if(!_.isUndefined(ARGS.dsname)) {
+  dsname = ARGS.dsname;
+}
+
 iface = "agge";
 if(!_.isUndefined(ARGS.iface)) {
   iface = ARGS.iface;
+}
+
+s = '*';
+if(!_.isUndefined(ARGS.s)) {
+  s = ARGS.s;
 }
 
 console.log("Panels in a row: " + Math.floor(12/span) + ", span: " + span);
 console.log(Math.floor(12/span));
 //
 dashboard = {
-  rows : [],
+    rows : [],
+    "time": {
+      "from": "now-15m",
+      "to": "now"
+    },
+    "refresh": "10s",
 };
 
 row = {
@@ -55,8 +70,9 @@ panels = [];
 dashboard.title = graph;
 
 function getPanel(srv) {
-    {% for panel in ["RAM", "Network", "CPU"] %}
-    templates.{{ panel }} = {{ lookup('template', panel + '.json') }};
+    {% for panel in ["RAM", "Network", "CPU", "LA", "DiskSaturation", "Connections", "DiskSpace", "AEDR", "DiskRW", "AEErrors"] %}
+    templates.{{ panel }} = {{ lookup('template', panel + '.json')|replace('$server', "\" + srv + \"")|replace('$iface', "\" + iface + \"") }};
+    console.log('{{ panel }}');
     {% endfor %}
     console.log(graph);
     console.log(templates[graph]);
@@ -100,9 +116,9 @@ $.ajaxSetup({
     async: false
 });
 
-services.datasourceSrv.get("whisper").then(function(datasource) {
+services.datasourceSrv.get(dsname).then(function(datasource) {
     console.log(datasource.url);
-    $.getJSON(datasource.url + '/metrics/find/?query=telegraf.*', function(servers){
+    $.getJSON(datasource.url + '/metrics/find/?query=telegraf.' + s, function(servers){
         // console.log(servers[0]);
         for (var i in servers) {
             console.log(servers[i].text);
